@@ -37,6 +37,7 @@ namespace Vidly.Controllers.api
             {
                 return NotFound();
             }
+
             return Ok(Mapper.Map<Customer, CustomerDto>(customer));
         }
 
