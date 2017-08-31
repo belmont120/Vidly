@@ -13,16 +13,30 @@ namespace Vidly.App_Start
         public MappingProfile()
         {
             // Domain to Dto
-            Mapper.CreateMap<Customer, CustomerDto>();
-            Mapper.CreateMap<Movie, MovieDto>();
-            Mapper.CreateMap<MembershipType, MembershipTypeDto>();
-            Mapper.CreateMap<Genre, GenreDto>();
+            //Mapper.Map<Customer, CustomerDto>();
+            //Mapper.Map<Movie, MovieDto>();
+            //Mapper.Map<MembershipType, MembershipTypeDto>();
+            //Mapper.Map<Genre, GenreDto>();
 
-            // Dto to Domain
-            Mapper.CreateMap<CustomerDto, Customer>()
-                .ForMember(c => c.Id, opt => opt.Ignore());
-            Mapper.CreateMap<MovieDto, Movie>()
-                .ForMember(c => c.Id, opt => opt.Ignore());
+
+
+            //Mapper.Map<CustomerDto, Customer>()
+            //    .ForMember(c => c.Id, opt => opt.Ignore());
+            //Mapper.Map<MovieDto, Movie>()
+            //    .ForMember(c => c.Id, opt => opt.Ignore());
+
+            Mapper.Initialize(cfg => {
+                // Domain to Dto
+                cfg.CreateMap<Customer, CustomerDto>();
+                cfg.CreateMap<Movie, MovieDto>();
+                cfg.CreateMap<MembershipType, MembershipTypeDto>();
+                cfg.CreateMap<Genre, GenreDto>();
+                // Dto to Domain
+                cfg.CreateMap<CustomerDto, Customer>()
+                    .ForMember(c => c.Id, opt => opt.Ignore());
+                cfg.CreateMap<MovieDto, Movie>()
+                    .ForMember(c => c.Id, opt => opt.Ignore());
+            });
         }
     }
 }
