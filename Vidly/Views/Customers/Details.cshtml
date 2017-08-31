@@ -7,5 +7,14 @@
 
 <h2 class="jumbotron">@Model.Name</h2>
 
+<ul>
+    <li>Membership Type: @Model.MembershipType.Name</li>
+
+    @if (Model.BirthDate != null)
+    {
+        <li>Birthdate: @Html.ValueFor(m => m.BirthDate, "{0:dd/MM/yyyy}")</li>
+    }
+    
+</ul>
 
 
