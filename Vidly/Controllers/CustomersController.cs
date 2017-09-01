@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using Vidly.Models;
 using System.Data.Entity;
 using Vidly.ViewModels;
+using System.Runtime.Caching;
+
 
 namespace Vidly.Controllers
 {
@@ -41,7 +43,19 @@ namespace Vidly.Controllers
             //var customers = _context.Customers.Include(c => c.MembershipType).ToList();
 
             //return View(customers);
-            return View();
+
+            //if (MemoryCache.Default["MembershipTypes"] == null)
+            //{
+            //    MemoryCache.Default["MembershipTypes"] = _context.MembershipTypes.ToList();
+            //}
+            //var membershipTypes = MemoryCache.Default["MembershipTypes"] as IEnumerable<MembershipType>;
+
+            if (User.IsInRole(RoleName.CanManageCustomers))
+            {
+                return View("List");
+            }
+
+            return View("ReadOnlyList");
         }
 
         public ActionResult Details(int id)
