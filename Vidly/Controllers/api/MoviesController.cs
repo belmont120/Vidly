@@ -31,6 +31,16 @@ namespace Vidly.Controllers.api
                 .Select(Mapper.Map<Movie, MovieDto>);
         }
 
+        // GET /api/customers?query=abc
+        public IHttpActionResult GetMovie(string query)
+        {
+            return Ok(_context.Movies
+                .Where(c => c.Name.Contains(query))
+                .Include(c => c.Genre)
+                .ToList()
+                .Select(Mapper.Map<Movie, MovieDto>));
+        }
+
         // GET /api/movies/1
         [HttpGet]
         public IHttpActionResult GetMovie(int id)

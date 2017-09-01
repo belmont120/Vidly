@@ -28,6 +28,8 @@ namespace Vidly.Models
         [MovieNumberInStock]
         public byte NumberInStock { get; set; }
 
+        public byte NumberAvailable { get; set; }
+
         public static readonly byte MinNumberInStock = 1;
         public static readonly byte MaxNumberInStock = 20;
     }

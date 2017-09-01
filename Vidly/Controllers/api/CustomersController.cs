@@ -28,6 +28,16 @@ namespace Vidly.Controllers.api
                 .Select(Mapper.Map<Customer, CustomerDto>));
         }
 
+        // GET /api/customers?query=abc
+        public IHttpActionResult GetCustomer(string query)
+        {
+            return Ok(_context.Customers
+                .Where(c => c.Name.Contains(query))
+                .Include(c => c.MembershipType)
+                .ToList()
+                .Select(Mapper.Map<Customer, CustomerDto>));
+        }
+
         // GET /api/customers/1
         public IHttpActionResult GetCustomer(int id)
         {
